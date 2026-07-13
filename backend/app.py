@@ -16,14 +16,47 @@ def about():
         "framework": "Flask",
         "Project": "DevMentors AI"
     })
-@app.route('/profile')
-def profile():
+@app.route('/profile/<name>/<int:age>')
+def profile(name, age):
     return jsonify({
-        "name1": "kumar",
-        "age": 22,
+        "name": name,
+        "age": age,
         "college": "Sahyadri College of Engineering",
         "location": "Mangalore, India",
         "skills": ["python", "sql", "html", "css", "javascript", "flask", "django"]
+    })
+@app.route('/square/<int:number>')
+def square(number):
+    return jsonify({
+        "number": number,
+        "square": number ** 2
+        
+        
+    })
+@app.route('/cube/<int:num>')
+def cube(num):
+    return jsonify({
+        "number":num,
+        "cube":num**3
+    })
+@app.route('/greet/<name>')
+def greet(name):
+    return jsonify({
+        "message":f"hello,{name}!"
+    })
+
+@app.route('/sub')
+def sub():
+    course=request.args.get('course')
+    return jsonify({
+        "course": course
+    })
+@app.route('/calc')
+def calc():
+    num1=request.args.get('num1',type=int)
+    num2=request.args.get('num2',type=int)
+    return jsonify({
+        'sum':num1+num2
     })
 @app.route('/contact')
 def contact():
@@ -46,5 +79,6 @@ def feeback():
         "message": "Your feedback has been received successfully",
         "feedback": info
     })
+    
 if __name__ == '__main__':  # check if the script is being run directly (not imported as a module)
     app.run(debug=True)  # start the Flask development server with debug mode enabled
