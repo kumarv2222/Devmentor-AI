@@ -35,5 +35,25 @@ def get_student(id):
             
         })
     return jsonify({"message": "Student not found"}), 404
+@student_bp.route('/student/<int:id>',methods=['PUT'])
+def updated_student(id):
+    student=Student.query.get(id)
+    if student is None:
+        return jsonify({"message":"Student not found"}), 404
+    data=request.get_json()
+    student.name=data["name"]
+    student.age=data["age"]
+    student.email=data["email"]
+    db.session.commit()
+    return jsonify({"message":"Student updated successfully"})
+@student_bp.route('/student/<int:id>',methods=['DELETE'])
+def delete_student(id):
+    student=Student.query.get(id)
+    if student is None:
+        return jsonify({"message":"Student not found"}),404
+    db.session.delete(student)
+    db.session.commit()
+    return jsonify({"message":"Student deleted successfully"})
+    
 # if __name__ == "__main__":
 #     student_bp.run(debug=True)
