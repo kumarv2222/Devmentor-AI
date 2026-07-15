@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 profile_bp=Blueprint("profile",__name__)
-@profile_bp.route('/profile/<name/<int:age>')
+@profile_bp.route('/profile/<name>/<int:age>')
 def profile(name, age):
     return jsonify({
         "name": name,
