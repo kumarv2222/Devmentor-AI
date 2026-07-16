@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-
+from services.ai_services import explain_python_code
 ai_bp = Blueprint("ai", __name__)
 
 
@@ -11,11 +11,7 @@ def explain_code():
     if not code:
         return jsonify({"message": "Code is required"}), 400
 
-    explanation = [
-        "This is a placeholder explanation.",
-        "The AI integration will be added on Day 12.",
-        "Your submitted code was received successfully.",
-    ]
+    explanation = explain_python_code(code)
     return jsonify({
         "language": "python",
         "line":len(code.splitlines()),
