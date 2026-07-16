@@ -7,6 +7,7 @@ from routes.student import student_bp
 from routes.profile import profile_bp
 from routes.contact import contact_bp
 from routes.auth import auth_bp
+from routes.ai_blueprint import ai_bp
 
 app = Flask(__name__)
 
@@ -25,6 +26,8 @@ app.register_blueprint(profile_bp)
 app.register_blueprint(contact_bp)
 
 app.register_blueprint(auth_bp)
+
+app.register_blueprint(ai_bp)
 
 with app.app_context():
     db.create_all()
