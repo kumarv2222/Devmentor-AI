@@ -5,7 +5,10 @@ student_bp = Blueprint("student", __name__)
 @student_bp.route('/student', methods=["POST"])
 def student():
     data = request.get_json()  # get the JSON data from the request body
-    student = Student(name=data['name'], age=data['age'], email=data['email'])
+    student = Student(
+        name=data['name'],
+        age=data['age'],
+          email=data['email'])
     db.session.add(student)
     db.session.commit()
     return jsonify({
