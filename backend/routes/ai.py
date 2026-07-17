@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from services.ai_services import explain_python_code
 from services.review_service import review_python_code
+from services.debug_service import debug_python_code
 ai_bp = Blueprint("ai", __name__)
 
 
@@ -33,4 +34,16 @@ def review():
     return jsonify({
         "Code": code,
         "review": review
+    }),200
+@ai_bp.route('/debug',methods=["POST"])
+def debug():
+    data=request.get_json()
+    code=data.get("code")
+    if not code:
+        return jsonify({
+            "message": "Code is required."}),400
+    debug=debug_python_code(code)
+    return jsonify({
+        "code": code,
+        "debug": debug
     }),200
