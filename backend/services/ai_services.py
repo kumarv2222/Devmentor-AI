@@ -12,9 +12,54 @@ def explain_python_code(code):
         return "No code provided."
 
     prompt = f"""
-    You are a Python mentor.
+    You are an expert Python mentor.
 
-    Explain the following Python code in simple language.
+    Analyze the following Python code.
+
+    Your response MUST follow this format exactly.
+
+    # Function Name
+
+    # Purpose
+
+    # Parameters
+
+    # Return Value
+
+    # Line-by-Line Explanation
+
+    Explain every line separately.
+
+    # Time Complexity
+
+    # Space Complexity
+
+    # Best Practices
+
+    # Common Beginner Mistakes
+
+    # Interview Questions
+    Explain for a beginner.
+
+    # Use simple English.
+
+    # Never skip any line.
+
+    # Use bullet points.
+
+    # Give examples.
+
+    # Mention mistakes beginners make.
+
+    # End with one interview question.
+    
+    #Difficulty Level.
+
+    # Easy
+
+    # Medium
+
+    # Hard
 
     Code:
 

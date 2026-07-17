@@ -9,9 +9,12 @@ def explain_code():
     code = data.get("code") if data else None
 
     if not code:
-        return jsonify({"message": "Code is required"}), 400
+        return jsonify({
+            "message": "Code is required"
+            }), 400
 
     explanation = explain_python_code(code)
+    
     return jsonify({
         "language": "python",
         "line":len(code.splitlines()),
