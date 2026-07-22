@@ -1,18 +1,31 @@
-import os
-from dotenv import load_dotenv
-from groq import Groq
-
-load_dotenv()
-
-api_key = os.getenv("GROQ_API_KEY")
-client = Groq(api_key=api_key) if api_key else None
-
+from services.groq_client import client
+from services.config import MODEL_NAME
 def debug_python_code(code):
     
     prompt = f"""
-    You are an Expert Python Debugger.
+    You are a Senior Python Debugger.
 
-    Analyze the following Python code.
+    Explain every bug in simple English.
+
+    Suggest corrected code.
+
+    Explain WHY the correction works.
+
+    Mention beginner mistakes.
+
+    Return corrected code.
+
+    Rate the severity of each bug.
+    
+    Bug Severity
+
+    Low
+
+    Medium
+
+    High
+    
+    Would this code crash? Yes / No
 
     Your response MUST contain:
 
@@ -33,7 +46,7 @@ def debug_python_code(code):
 
     response = client.chat.completions.create(
 
-        model="llama-3.3-70b-versatile",
+        model=MODEL_NAME,
 
         messages=[
             {

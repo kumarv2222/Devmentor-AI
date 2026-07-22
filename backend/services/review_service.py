@@ -1,10 +1,7 @@
-import os
-from dotenv import load_dotenv
-from groq import Groq
 
-load_dotenv()
-api_key = os.getenv("GROQ_API_KEY")
-client = Groq(api_key=api_key) if api_key else None
+from services.groq_client import client
+
+from services.config import MODEL_NAME
 
 def review_python_code(code):
     prompt = f"""
@@ -45,7 +42,7 @@ def review_python_code(code):
     """
     response = client.chat.completions.create(
 
-        model="llama-3.3-70b-versatile",
+        model=MODEL_NAME,
 
         messages=[
             {
